@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Note = require("../models/note");
+const Note = require("./note");
 
 
 const taskSchema = new mongoose.Schema({
