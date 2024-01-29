@@ -19,8 +19,6 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const taskId = req.params.id;
 
-  console.log(req.params) 
-
   const q = "SELECT * FROM tasks WHERE task_id = ?";
   db.query(q, [taskId], (err, data) => {
     if (err) {

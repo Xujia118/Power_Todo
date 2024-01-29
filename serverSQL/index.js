@@ -10,8 +10,8 @@ app.use(cors());
 const taskRoute = require("./routes/tasks");
 app.use("/tasks", taskRoute);
 
-// const noteRoute = require("./routes/notes");
-// app.use("/notes", noteRoute);
+const noteRoute = require("./routes/notes");
+app.use("/tasks", noteRoute);
 
 // Listen
 app.listen(3001, () => {
