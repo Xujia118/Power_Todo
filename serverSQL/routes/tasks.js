@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db");
 
-// const Task = require("../models/task"); // Do we have to create models in SQL?
-
 // Get all
 router.get("/", (req, res) => {
   const q = "SELECT * FROM tasks";
@@ -20,7 +18,10 @@ router.get("/", (req, res) => {
 // Get one
 router.get("/:id", (req, res) => {
   const taskId = req.params.id;
-  const q = "SELECT * FROM tasks WHERE id = ?";
+
+  console.log(req.params) 
+
+  const q = "SELECT * FROM tasks WHERE task_id = ?";
   db.query(q, [taskId], (err, data) => {
     if (err) {
       console.log("Error fetching task:", task);
@@ -51,7 +52,7 @@ router.post("/", (req, res) => {
 // Delete
 router.delete("/:id", (req, res) => {
   const taskId = req.params.id;
-  const q = "DELETE FROM tasks WHERE id = ?";
+  const q = "DELETE FROM tasks WHERE task_id = ?";
   db.query(q, [taskId], (err, data) => {
     if (err) {
       console.log("Error deleting task:");
@@ -67,7 +68,7 @@ router.delete("/:id", (req, res) => {
 router.patch("/:id", (req, res) => {
   const taskId = req.params.id;
   const { title, content } = req.body;
-  const q = "UPDATE tasks SET `title` = ?, `content` = ? WHERE id = ?";
+  const q = "UPDATE tasks SET `title` = ?, `content` = ? WHERE task_id = ?";
 
   db.query(q, [title, content, taskId], (err, data) => {
     if (err) {
