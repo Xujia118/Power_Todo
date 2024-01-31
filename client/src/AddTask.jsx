@@ -26,15 +26,16 @@ function AddTask({ taskList, setTaskList }) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="form-add-task" onSubmit={handleSubmit}>
         <input
+          className="input-add-task"
           type="text"
           name="task"
           value={newTask.name}
           placeholder="New task..."
           onChange={(e) => setNewTask({ ...newTask, name: e.target.value })}
         />
-        <button>Add</button>
+        <button className="button-add-task">Add</button>
       </form>
     </div>
   );

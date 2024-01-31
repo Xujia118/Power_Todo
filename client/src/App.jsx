@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import AddTask from "./AddTask";
 import TaskList from "./TaskList";
+import NoteList from "./NoteList";
 
 function App() {
-  const [taskList, setTaskList] = useState([]);
-
   return (
-    <div>
-      <AddTask taskList={taskList} setTaskList={setTaskList} />
-      <TaskList taskList={taskList} setTaskList={setTaskList} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/tasks" element={<TaskList />} />
+        <Route path="/tasks/:taskId/notes" element={<NoteList />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

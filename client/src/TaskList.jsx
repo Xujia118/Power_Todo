@@ -1,7 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function TaskList({ taskList, setTaskList }) {
+import AddTask from "./AddTask";
+
+import "./TaskList.css";
+
+function TaskList() {
+  const [taskList, setTaskList] = useState([]);
+
   // Get all tasks
   useEffect(() => {
     async function fetchTaskList() {
@@ -18,27 +25,43 @@ function TaskList({ taskList, setTaskList }) {
   // Delete one task
   async function handleDelete(taskId) {
     try {
-      await axios.delete("http://localhost:3001/tasks/" + taskId);
+      await axios.delete(`http://localhost:3001/tasks/${taskId}`);
 
       setTaskList((prevTaskList) =>
         prevTaskList.filter((task) => task._id !== taskId)
       );
-
     } catch (err) {
       console.log(err);
     }
   }
 
+  const navigate = useNavigate();
+
   return (
-    <ul> 
-      {taskList.map((task) => (
-        <li key={task._id}>
-          {task.name}
-          <button>View</button>
-          <button onClick={() => handleDelete(task._id)}>Delete</button>
-        </li>
-      ))}
-    </ul>
+    <main>
+      <AddTask taskList={taskList} setTaskList={setTaskList} />
+
+      <div className="task-container">
+        <ul className="task-menu">
+          {taskList.map((task) => (
+            <li className="task-item" key={task._id}>
+              {task.name}
+              <div className="button-container">
+                <button onClick={() => navigate(`/tasks/${task._id}/notes`)}>
+                  View
+                </button>
+                <button
+                  className="button-delete"
+                  onClick={() => handleDelete(task._id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </main>
   );
 }
 
