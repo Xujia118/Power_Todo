@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+
+
 import AddTask from "./AddTask";
 
 import "./TaskList.css";
@@ -48,13 +53,15 @@ function TaskList() {
               {task.name}
               <div className="button-container">
                 <button onClick={() => navigate(`/tasks/${task._id}/notes`)}>
-                  View
+                  
+                  <FontAwesomeIcon icon={faEye} />
                 </button>
                 <button
                   className="button-delete"
                   onClick={() => handleDelete(task._id)}
                 >
-                  Delete
+                  <FontAwesomeIcon icon={faTrash} />
+
                 </button>
               </div>
             </li>
