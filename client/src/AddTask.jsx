@@ -7,22 +7,25 @@ function AddTask({ taskList, setTaskList }) {
     notes: [],
   });
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+async function handleSubmit(e) {
+  e.preventDefault();
 
-    setTaskList([...taskList, newTask]);
+  try {
+    // Make the POST request to create a new task
+    const res = await axios.post("http://localhost:3001/tasks", newTask);
 
-    try {
-      await axios.post("http://localhost:3001/tasks", newTask);
+    // Update the taskList state ONLY AFTER the POST request succeeds
+    setTaskList([...taskList, res.data]);
 
-      setNewTask({
-        name: "",
-        notes: [],
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    // Reset newTask state
+    setNewTask({
+      name: "",
+      notes: [],
+    });
+  } catch (err) {
+    console.log(err);
   }
+}
 
   return (
     <div>

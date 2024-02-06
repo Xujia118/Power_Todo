@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TaskList from "./TaskList";
 import NoteList from "./NoteList";
 
+import "./App.css"
+
 function App() {
   return (
       <Routes>
