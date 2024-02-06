@@ -17,7 +17,7 @@ main {
     overflow: scroll;
 }
 
-/* control all colors */
+/* Control all colors */
 body {
     --background-color: #C5D8D1;
     --text-color: white;
@@ -44,7 +44,7 @@ body.dark {
         --button-text-color: black;
 }
 
-/* control all forms */
+/* Control all forms*/
 .form {
     padding: 0;
 
@@ -58,4 +58,23 @@ body.dark {
     width: 85%;
 
     padding: 0.3rem;
+
+    border-radius: 3px;
+    border: 1px solid lightgray;
+}
+
+.input::placeholder {
+    color: lightgray;
+}
+
+.submit-button {
+    border: none;
+    border-radius: 3px;
+
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+}
+
+.submit-button:hover {
+    cursor: pointer;
 }

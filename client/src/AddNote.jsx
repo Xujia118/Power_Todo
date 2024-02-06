@@ -58,7 +58,7 @@ function AddNote({ noteList, setNoteList, taskId }) {
           placeholder="New note..."
           onChange={handleChange}
         />
-        <button type="submit">Add</button>
+        <button className="submit-button" type="submit">Add</button>
       </form>
       <p className="error-message">{errorMessage}</p>
     </div>

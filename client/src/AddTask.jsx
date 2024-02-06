@@ -55,7 +55,8 @@ function AddTask({ taskList, setTaskList }) {
             onChange={(e) => setNewTask({ ...newTask, name: e.target.value })}
           />
           <button
-            className="dialog-button-add"
+            className="submit-button"
+            type="button"
             onClick={() => dialogRef.current.close()}
           >
             Add
