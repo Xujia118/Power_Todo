@@ -51,9 +51,10 @@ function NoteList() {
   return (
     <main>
       <div>
-        <h2>{taskName}</h2>
+        <h2 className="task-name">{taskName}</h2>
       </div>
 
+      
       <AddNote noteList={noteList} setNoteList={setNoteList} taskId={taskId} />
 
       <div className="note-container">

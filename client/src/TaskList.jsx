@@ -43,16 +43,18 @@ function TaskList() {
 
   return (
     <main>
-      <AddTask taskList={taskList} setTaskList={setTaskList} />
-
       <div className="task-container">
+        <AddTask taskList={taskList} setTaskList={setTaskList} />
         <ul className="task-menu">
           {taskList.map((task) => (
             <li className="task-item" key={task._id}>
               {task.name}
               <div className="button-container">
                 <button onClick={() => navigate(`/tasks/${task._id}/notes`)}>
-                  <FontAwesomeIcon icon={faEye} />
+                  <FontAwesomeIcon
+                    icon={faEye}
+                    // style={{ background: "black", color: "white" }}
+                  />
                 </button>
                 <button
                   className="button-delete"

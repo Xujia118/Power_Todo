@@ -1,3 +1,7 @@
+.task-name {
+    text-transform: capitalize;
+}
+
 .note-container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -20,6 +24,8 @@
     color: white;
 
     border-radius: 5px;
+
+    text-transform: capitalize;
 }
 
 @media (min-width: 44rem) {

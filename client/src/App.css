@@ -8,5 +8,54 @@ body, html {
 main {
     padding: 1rem;
 
-    background-color: lightblue;
+    background-color: var(--background-color);
+
+    height: 100vh;
+
+    box-sizing: border-box;
+
+    overflow: scroll;
+}
+
+/* control all colors */
+body {
+    --background-color: #C5D8D1;
+    --text-color: white;
+
+    --panel-color: #12263A;
+    --panel-text-color: white;
+    --panel-color-hover: brown;
+    --panel-text-color-hover: black;
+
+    --button-background-color: coral;
+    --button-text-color: white;
+}
+
+body.dark {
+        --background-color: #373D20;
+        --text-color: black;
+    
+        --panel-color: plum;
+        --panel-text-color: black;
+        --panel-color-hover: brown;
+        --panel-text-color-hover: black;
+    
+        --button-background-color: coral;
+        --button-text-color: black;
+}
+
+/* control all forms */
+.form {
+    padding: 0;
+
+    grid-column: span 12;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.input {
+    width: 85%;
+
+    padding: 0.3rem;
 }

@@ -1,11 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import "./AddNote.css";
+
 function AddNote({ noteList, setNoteList, taskId }) {
   const [newNote, setNewNote] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  function handleChange(e) {
+    const noteValue = e.target.value;
+
+    if (!noteValue.trim()) {
+      setErrorMessage("Note cannot be empty");
+    } else {
+      setErrorMessage("");
+    }
+
+    setNewNote(noteValue);
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (!newNote) {
+      setErrorMessage("Note cannot be empty");
+      return
+    } else {
+      setErrorMessage("");
+    }
 
     try {
       const res = await axios.post(
@@ -26,17 +48,19 @@ function AddNote({ noteList, setNoteList, taskId }) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="form-container">
+      <form className="form note" onSubmit={handleSubmit}>
         <input
+          className="input note"
           type="text"
           name="note"
           value={newNote}
           placeholder="New note..."
-          onChange={(e) => setNewNote(e.target.value)}
+          onChange={handleChange}
         />
         <button type="submit">Add</button>
       </form>
+      <p className="error-message">{errorMessage}</p>
     </div>
   );
 }
