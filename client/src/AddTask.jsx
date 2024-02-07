@@ -14,7 +14,29 @@ function AddTask({ taskList, setTaskList }) {
     notes: [],
   });
 
-  async function handleSubmit(e) {
+  const [errorMessage, setErrorMessage] = useState("");
+
+  function handleChange(e) {
+    const newTaskName = e.target.value;
+    setNewTask({ ...newTask, name: newTaskName });
+
+    if (newTaskName) {
+      setErrorMessage("");
+    }
+  }
+
+  function handleButtonSubmit(e) {
+    e.preventDefault();
+
+    if (!newTask.name) {
+      setErrorMessage("Task cannot be empty");
+    } else {
+      handleFormSubmit(e);
+      dialogRef.current.close();
+    }
+  }
+
+  async function handleFormSubmit(e) {
     e.preventDefault();
 
     try {
@@ -45,23 +67,24 @@ function AddTask({ taskList, setTaskList }) {
       </button>
 
       <dialog className="dialog" ref={dialogRef}>
-        <form className="form task" onSubmit={handleSubmit}>
+        <form className="form task" onSubmit={handleFormSubmit}>
           <input
             className="input task"
             type="text"
             name="task"
             value={newTask.name}
             placeholder="New task..."
-            onChange={(e) => setNewTask({ ...newTask, name: e.target.value })}
+            onChange={handleChange}
           />
           <button
             className="submit-button"
-            type="button"
-            onClick={() => dialogRef.current.close()}
+            type="submit"
+            onClick={handleButtonSubmit}
           >
             Add
           </button>
         </form>
+        <p className="error-message">{errorMessage}</p>
       </dialog>
     </div>
   );
